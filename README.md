@@ -8,26 +8,39 @@ O esperado de um projeto incial:
 - Busca interna ??? [algolia](https://www.algolia.com/developers)
 - Blog / Notícias ???
 
-Iniciar pelo projeto do [howbizarre](https://github.com/howbizarre/starter-template-vue-3-bootstrap-5-sass-dark-theme-typescript)
+## Referências:
+- [howbizarre](https://github.com/howbizarre/starter-template-vue-3-bootstrap-5-sass-dark-theme-typescript)
+- [danielschmitz - kitchenStock](https://github.com/danielschmitz/kitchenStock-vue3)
+- [danielschmitz - vue3-book](https://github.com/danielschmitz/kitchen-app-vue3-book)
+- [danielschmitz - livro vue3 grátis](https://leanpub.com/book-vue-br)
+
+## Prparando o ambiente de desenvolvimento (vscode):
+Instalar o [vscode](https://code.visualstudio.com/Download) com os plugins:
+- [Vue - official - Prioridade!!!](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [Console Ninja](https://marketplace.visualstudio.com/items?itemName=WallabyJs.console-ninja)
+- [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
 
 
-# Get Started
+
+## Get Started
 
 Make a new repository from the template and use your favorite package manager to install it. Mine is NPM and the commands are:
 
-## Install
+### Install
 
 ```bash
 npm install
 ```
 
-## Development
+### Development
 
 ```bash
 npm run dev
 ```
 
-## Build
+### Build
 
 Make sure, that reviewed all settings about the build script are in the package.json file and in the .env.[mode] files.
 
