@@ -5,6 +5,7 @@ O esperado de um projeto incial:
 - Mudar de tema (claro / escuro)
   - Fazer o auto do tema ???
 - Multi línguas ([vue-i18n](https://vue-i18n.intlify.dev/))
+- Pensar no site com a pasta layouts?!?
 - Busca interna ??? [algolia](https://www.algolia.com/developers)
 - Blog / Notícias ???
 
