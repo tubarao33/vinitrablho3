@@ -1,50 +1,39 @@
-# v0-bt5-vue
-Projeto inicial para outros projetos com [__vue3__](https://vuejs.org/) e [__bootstrap5__](https://getbootstrap.com/)
+# v0-vue3-bt5
 
-O esperado de um projeto incial:
-- Mudar de tema (claro / escuro)
-  - Fazer o auto do tema ???
-- Multi línguas ([vue-i18n](https://vue-i18n.intlify.dev/))
-- Pensar no site com a pasta layouts?!?
-- Busca interna ??? [algolia](https://www.algolia.com/developers)
-- Blog / Notícias ???
+This template should help get you started developing with Vue 3 in Vite.
 
-## Referências:
-- [howbizarre](https://github.com/howbizarre/starter-template-vue-3-bootstrap-5-sass-dark-theme-typescript)
-- [danielschmitz - kitchenStock](https://github.com/danielschmitz/kitchenStock-vue3)
-- [danielschmitz - vue3-book](https://github.com/danielschmitz/kitchen-app-vue3-book)
-- [danielschmitz - livro vue3 grátis](https://leanpub.com/book-vue-br)
+## Recommended IDE Setup
 
-## Prparando o ambiente de desenvolvimento (vscode):
-Instalar o [vscode](https://code.visualstudio.com/Download) com os plugins:
-- [Vue - official - Prioridade!!!](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
-- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-- [Console Ninja](https://marketplace.visualstudio.com/items?itemName=WallabyJs.console-ninja)
-- [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
+## Type Support for `.vue` Imports in TS
 
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
 
-## Get Started
+## Customize configuration
 
-Make a new repository from the template and use your favorite package manager to install it. Mine is NPM and the commands are:
+See [Vite Configuration Reference](https://vite.dev/config/).
 
-### Install
+## Project Setup
 
-```bash
+```sh
 npm install
 ```
 
-### Development
+### Compile and Hot-Reload for Development
 
-```bash
+```sh
 npm run dev
 ```
 
-### Build
+### Type-Check, Compile and Minify for Production
 
-Make sure, that reviewed all settings about the build script are in the package.json file and in the .env.[mode] files.
-
-```bash
+```sh
 npm run build
+```
+
+### Lint with [ESLint](https://eslint.org/)
+
+```sh
+npm run lint
 ```
