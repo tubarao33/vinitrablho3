@@ -12,4 +12,9 @@ import DarkModeButton from '@/components/DarkModeButton.vue';
   <div id="app">
     <DarkModeButton />
   </div>
+
+  <div>
+    <h1>{{ $t('welcome') }}</h1>
+    <p>{{ $t('language') }}</p>
+  </div>
 </template>
