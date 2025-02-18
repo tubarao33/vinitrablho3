@@ -4,5 +4,5 @@ import NavBar from '@/components/NavBar.vue';
 
 <template>
   <NavBar/>
-<code>src/views/HomeView.vue</code>
+  <code>src/views/HomeView.vue</code>
 </template>

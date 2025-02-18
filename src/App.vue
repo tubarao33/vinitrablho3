@@ -2,7 +2,7 @@
 
 import { RouterView } from 'vue-router'
 
-import DarkModeButton from '@/components/DarkModeButton.vue';
+//import DarkModeButton from '@/components/DarkModeButton.vue';
 
 </script>
 
@@ -10,11 +10,6 @@ import DarkModeButton from '@/components/DarkModeButton.vue';
 <template>
   <RouterView />
   <div id="app">
-    <DarkModeButton />
-  </div>
-
-  <div>
-    <h1>{{ $t('welcome') }}</h1>
-    <p>{{ $t('language') }}</p>
+    
   </div>
 </template>

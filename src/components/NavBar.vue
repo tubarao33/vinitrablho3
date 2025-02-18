@@ -13,7 +13,13 @@ const isActive = (path: string) => path === activeRoute.value;
 const darkMode = ref(false);
 
 const toggleDarkMode = () => {
-  document.body.classList.toggle('bg-dark', darkMode.value);
+  //document.body.classList.toggle('bg-dark', darkMode.value);
+  if (darkMode.value) {
+    document.documentElement.setAttribute("data-bs-theme", "dark");  
+  } else {
+    document.documentElement.setAttribute("data-bs-theme", "light");
+  }
+  
   
 };
 </script>
