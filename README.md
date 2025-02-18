@@ -6,7 +6,7 @@ O esperado de um projeto incial:
 - [ ] Fazer o auto do tema ???
 - [ ] Multi línguas ([vue-i18n](https://vue-i18n.intlify.dev/))
 - [ ] Pensar no site com a pasta layouts?!?
-- [ ] Busca interna ??? [algolia](https://www.algolia.com/developers)
+- [ ] Busca interna ??? [algolia](https://www.algolia.com/developers) [typesense](https://typesense.org/)
 - [ ] Blog / Notícias ???
 
 ## Referências:
