@@ -2,12 +2,12 @@
 Projeto inicial para outros projetos com [__vue3__](https://vuejs.org/) e [__bootstrap5__](https://getbootstrap.com/)
 
 O esperado de um projeto incial:
-[v] Mudar de tema (claro / escuro)
-  [] Fazer o auto do tema ???
-[] Multi línguas ([vue-i18n](https://vue-i18n.intlify.dev/))
-[] Pensar no site com a pasta layouts?!?
-[] Busca interna ??? [algolia](https://www.algolia.com/developers)
-[] Blog / Notícias ???
+- [x] Mudar de tema (claro / escuro)
+- [ ] Fazer o auto do tema ???
+- [ ] Multi línguas ([vue-i18n](https://vue-i18n.intlify.dev/))
+- [ ] Pensar no site com a pasta layouts?!?
+- [ ] Busca interna ??? [algolia](https://www.algolia.com/developers)
+- [ ] Blog / Notícias ???
 
 ## Referências:
 - [howbizarre](https://github.com/howbizarre/starter-template-vue-3-bootstrap-5-sass-dark-theme-typescript)
