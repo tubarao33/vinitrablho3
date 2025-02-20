@@ -3,7 +3,7 @@ Projeto inicial para outros projetos com [__vue3__](https://vuejs.org/) e [__boo
 
 O esperado de um projeto incial:
 - [x] Mudar de tema (claro / escuro)
-- [ ] Fazer o auto do tema ???
+- [x] Fazer o auto do tema ???
 - [ ] Multi línguas ([vue-i18n](https://vue-i18n.intlify.dev/))
 - [ ] Pensar no site com a pasta layouts?!?
 - [ ] Busca interna ??? [algolia](https://www.algolia.com/developers) [typesense](https://typesense.org/)
