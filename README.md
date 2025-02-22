@@ -15,7 +15,7 @@ O esperado de um projeto incial:
 - [danielschmitz - vue3-book](https://github.com/danielschmitz/kitchen-app-vue3-book)
 - [danielschmitz - livro vue3 grátis](https://leanpub.com/book-vue-br)
 
-## Prparando o ambiente de desenvolvimento (vscode):
+## Preparando o ambiente de desenvolvimento (vscode):
 Instalar o [vscode](https://code.visualstudio.com/Download) com os plugins:
 - [Vue - official - Prioridade!!!](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
@@ -25,9 +25,9 @@ Instalar o [vscode](https://code.visualstudio.com/Download) com os plugins:
 
 
 
-## Get Started
+## Como começar
 
-Make a new repository from the template and use your favorite package manager to install it. Mine is NPM and the commands are:
+Crie um novo repositório a partir do modelo e use seu gerenciador de pacotes favorito para instalá-lo. Utilizando NPM os comandos são:
 
 ### Install
 
@@ -35,7 +35,7 @@ Make a new repository from the template and use your favorite package manager to
 npm install
 ```
 
-### Development
+### Ambiente de Desenvolvimento
 
 ```bash
 npm run dev
@@ -43,7 +43,7 @@ npm run dev
 
 ### Build
 
-Make sure, that reviewed all settings about the build script are in the package.json file and in the .env.[mode] files.
+Certifique-se de que todas as configurações revisadas sobre o script de construção estejam no arquivo package.json e nos arquivos .env.[mode].
 
 ```bash
 npm run build
