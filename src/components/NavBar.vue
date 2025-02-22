@@ -9,28 +9,34 @@ const activeRoute = computed(() => router.currentRoute.value.path);
 const isActive = (path: string) => path === activeRoute.value;
 
 const darkMode = ref(false);
+const selectedLanguage = ref(localStorage.getItem("language") || "en");
+const languages = [
+  { code: "en", label: "English" },
+  { code: "pt", label: "Português" },
+  { code: "es", label: "Español" }
+];
 
-// Detectar o tema atual do navegador
 const detectThemeFromSystem = () => {
   const isDarkModePreferred = window.matchMedia("(prefers-color-scheme: dark)").matches;
   darkMode.value = isDarkModePreferred;
   applyTheme();
 };
 
-// Aplica o tema atual
 const applyTheme = () => {
   const theme = darkMode.value ? "dark" : "light";
   document.documentElement.setAttribute("data-bs-theme", theme);
   localStorage.setItem("theme", theme);
 };
 
-// Atualiza o tema quando o switch for alterado
 watch(darkMode, applyTheme);
+watch(selectedLanguage, (newLang) => {
+  localStorage.setItem("language", newLang);
+  console.log("Idioma alterado para:", newLang);
+});
 
-// Detecta a mudança de preferência do sistema (caso o usuário altere o tema)
 onMounted(() => {
-  detectThemeFromSystem(); // Aplica o tema do navegador inicialmente
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", detectThemeFromSystem); 
+  detectThemeFromSystem();
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", detectThemeFromSystem);
 });
 </script>
 
@@ -50,11 +56,14 @@ onMounted(() => {
             </router-link>
           </li>
         </ul>
-        <div class="form-check form-switch ms-auto">
-          <input class="form-check-input" type="checkbox" id="darkModeSwitch" v-model="darkMode">
-          <label class="form-check-label" for="darkModeSwitch">
-            Dark Mode
-          </label>
+        <div class="d-flex align-items-center ms-auto">
+          <div class="form-check form-switch me-3">
+            <input class="form-check-input" type="checkbox" id="darkModeSwitch" v-model="darkMode">
+            <label class="form-check-label" for="darkModeSwitch">Dark Mode</label>
+          </div>
+          <select v-model="selectedLanguage" class="form-select form-select-sm">
+            <option v-for="lang in languages" :key="lang.code" :value="lang.code">{{ lang.label }}</option>
+          </select>
         </div>
       </div>
     </div>
@@ -68,5 +77,9 @@ onMounted(() => {
 
 .form-switch {
   margin-top: 8px;
+}
+
+.form-select {
+  width: auto;
 }
 </style>
