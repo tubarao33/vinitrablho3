@@ -58,6 +58,15 @@ onMounted(() => {
     locale.value = savedLanguage;
   }
 });
+// Sistema de busca interna
+const query = ref("");
+const filteredRoutes = computed(() => {
+  return routes.filter(route =>
+    route.children?.some(child =>
+      child.name?.toLowerCase().includes(query.value.toLowerCase())
+    )
+  );
+});
 </script>
 
 <template>
@@ -77,6 +86,12 @@ onMounted(() => {
           </li>
         </ul>
         <div class="d-flex align-items-center">
+          <input v-model="query" type="text" placeholder="Buscar..." class="form-control me-2" />
+          <ul v-if="query && filteredRoutes.length" class="search-results">
+            <li v-for="route in filteredRoutes" :key="route.path">
+              {{ route.children?.[0]?.name || t('navbar.noResults') }}
+            </li>
+          </ul>
           <div class="language-selector">
             <button class="btn btn-outline-secondary dropdown-toggle" @click="isLanguageOpen = !isLanguageOpen" :aria-expanded="isLanguageOpen">
               {{ t('language') }}: {{ languages.find(lang => lang.code === locale.value)?.name || "Português" }} <span class="caret"></span>
@@ -191,4 +206,18 @@ onMounted(() => {
 [data-bs-theme="dark"] .dropdown-item:hover {
   background-color: #343a40;
 }
+.form-switch {
+  margin-top: 8px;
+}
+.search-results {
+  background-color: white;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 0;
+  list-style: none;
+  margin: 0;
+  position: absolute;
+  z-index: 1000;
+  }
 </style>
