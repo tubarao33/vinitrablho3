@@ -19,12 +19,21 @@ const messages = {
       contact: "Contact",  // Usando 'contact'
     },
     footer: {
-      title: "Footer Bar",
-      description: "Footer bar created for page styling. Edit it for better use.",
-      contact: "CONTACT",
+      title: "Federal University of Technology – Paraná (UTFPR)",
+      description: "UTFPR is a higher education institution focused on technology and innovation, offering undergraduate, graduate, and research programs.",
+      contact: "Contact",
       address: "R. Cristo Rei, 19 - Vila Becker, Toledo - PR, 85902-490",
       phone: "(45) 3379-6800",
-      email: "epsantos@utfpr.edu.br",
+      email: "contact@utfpr.edu.br",
+      links: {
+        about: "About UTFPR",
+        courses: "Courses",
+        research: "Research",
+        contact: "Contact Us",
+        accessibility: "Accessibility",
+        privacy: "Privacy Policy",
+      },
+      copyright: "© 2025 Federal University of Technology – Paraná. All rights reserved.",
     },
   },
   pt: {
@@ -39,12 +48,21 @@ const messages = {
       contact: "Contato",  // Usando 'contact'
     },
     footer: {
-      title: "Barra de rodapé",
-      description: "Footer bar criada para estilização da página. Faça sua edição para melhor uso.",
-      contact: "CONTATO",
+      title: "Universidade Tecnológica Federal do Paraná - UTFPR",
+      description: "A UTFPR é uma instituição de ensino superior voltada à tecnologia e inovação, oferecendo cursos de graduação, pós-graduação e pesquisa.",
+      contact: "Entre em contato",
       address: "R. Cristo Rei, 19 - Vila Becker, Toledo - PR, 85902-490",
       phone: "(45) 3379-6800",
-      email: "epsantos@utfpr.edu.br",
+      email: "contato@utfpr.edu.br",
+      links: {
+        about: "Sobre a UTFPR",
+        courses: "Cursos",
+        research: "Pesquisa",
+        contact: "Fale Conosco",
+        accessibility: "Acessibilidade",
+        privacy: "Política de Privacidade",
+      },
+      copyright: "© 2025 Universidade Tecnológica Federal do Paraná. Todos os direitos reservados.",
     },
   },
   es: {
@@ -59,12 +77,21 @@ const messages = {
       contact: "Contacto",  // Usando 'contact'
     },
     footer: {
-      title: "Barra de pie",
-      description: "Barra de pie creada para la estilización de la página. Edítelo para mejor uso.",
-      contact: "CONTACTO",
+      title: "Universidad Tecnológica Federal de Paraná (UTFPR)",
+      description: "La UTFPR es una institución de educación superior enfocada en la tecnología y la innovación, ofreciendo programas de grado, posgrado e investigación.",
+      contact: "Contacto",
       address: "R. Cristo Rei, 19 - Vila Becker, Toledo - PR, 85902-490",
       phone: "(45) 3379-6800",
-      email: "epsantos@utfpr.edu.br",
+      email: "contacto@utfpr.edu.br",
+      links: {
+        about: "Sobre UTFPR",
+        courses: "Cursos",
+        research: "Investigación",
+        contact: "Contáctanos",
+        accessibility: "Accesibilidad",
+        privacy: "Política de Privacidad",
+      },
+      copyright: "© 2025 Universidad Tecnológica Federal de Paraná. Todos los derechos reservados.",
     },
   },
 };
