@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import Navbar from "@/components/Navbar.vue"; // Importe o Navbar.vue
+import Navbar from "@/components/NavBar.vue"; // Importe o Navbar.vue
 import AppCarousel from "@/components/AppCarousel.vue"; // Renomeie Carousel para AppCarousel
 
 const { t } = useI18n(); // Remova 'locale' pois não é usado
@@ -15,7 +15,8 @@ const { t } = useI18n(); // Remova 'locale' pois não é usado
     <Navbar />
 
     <!-- Adiciona o carrossel -->
-    <AppCarousel /> <!-- Atualize para AppCarousel -->
+    <AppCarousel />
+    <!-- Atualize para AppCarousel -->
 
     <!-- Renderiza as rotas (HomeView, AboutView, ContactsView, etc.) -->
     <RouterView />

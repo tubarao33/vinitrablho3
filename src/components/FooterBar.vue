@@ -9,7 +9,10 @@
       <div class="social-links fixed-bottom m-0 p-0">
         <ul class="lista col-xxl-8 text-xxl-center">
           <li class="social-midia">
-            <a href="https://whatsapp.com/channel/0029Vb3tWIO3wtb3Jvag6Z0H" target="_blank"></a>
+            <a
+              href="https://whatsapp.com/channel/0029Vb3tWIO3wtb3Jvag6Z0H"
+              target="_blank"
+            ></a>
           </li>
           <li class="social-midia">
             <a href="https://twitter.com/utfpr_" target="_blank"></a>
@@ -24,7 +27,10 @@
             <a href="https://www.facebook.com/UTFPR/" target="_blank"></a>
           </li>
           <li class="social-midia">
-            <a href="https://www.linkedin.com/school/utfpr-oficial/?originalSubdomain=br" target="_blank"></a>
+            <a
+              href="https://www.linkedin.com/school/utfpr-oficial/?originalSubdomain=br"
+              target="_blank"
+            ></a>
           </li>
         </ul>
       </div>
@@ -34,9 +40,19 @@
       <div class="Footer-title text-xxl-center">
         <h4>{{ $t("footer.contact") }}</h4>
         <ul>
-          <li><a href="https://maps.app.goo.gl/2Qv9AmF8pPXBYeFK9" target="_blank">{{ $t("footer.address") }}</a></li>
-          <li><a href="tel:+55453379-6800">{{ $t("footer.phone") }}</a></li>
-          <li><a href="mailto:epsantos@utfpr.edu.br">{{ $t("footer.email") }}</a></li>
+          <li>
+            <a
+              href="https://maps.app.goo.gl/2Qv9AmF8pPXBYeFK9"
+              target="_blank"
+              >{{ $t("footer.address") }}</a
+            >
+          </li>
+          <li>
+            <a href="tel:+55453379-6800">{{ $t("footer.phone") }}</a>
+          </li>
+          <li>
+            <a href="mailto:epsantos@utfpr.edu.br">{{ $t("footer.email") }}</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -47,12 +63,12 @@
 import { useI18n } from "vue-i18n";
 
 // Acessar a função t para tradução
-const { t } = useI18n();
+useI18n();
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap");
 
 .footer-bar {
   background-color: #151515;
@@ -102,27 +118,33 @@ ul {
   padding: 15px;
 }
 
-.social-midia a[href$="https://www.instagram.com/utfpr_/"]:before {
-  content: url("../instagram.png");
+.social-midia a[href$="https://www.instagram.com/utfpr_/"]:before
+{
+  content: url("../img/instagram.png");
 }
 
-.social-midia a[href$="https://twitter.com/utfpr_"]:before {
-  content: url("../twitter.png");
+.social-midia a[href$="https://twitter.com/utfpr_"]:before
+{
+  content: url("../img/twitter.png");
 }
 
-.social-midia a[href$="https://whatsapp.com/channel/0029Vb3tWIO3wtb3Jvag6Z0H"]:before {
-  content: url("../whatsapp.png");
+.social-midia a[href$="https://whatsapp.com/channel/0029Vb3tWIO3wtb3Jvag6Z0H"]:before
+{
+  content: url("../img/whatsapp.png");
 }
 
-.social-midia a[href$="https://www.youtube.com/canaldaUTFPR"]:before {
-  content: url("../youtube.png");
+.social-midia a[href$="https://www.youtube.com/canaldaUTFPR"]:before
+{
+  content: url("../img/youtube.png");
 }
 
-.social-midia a[href$="https://www.facebook.com/UTFPR/"]:before {
-  content: url("../facebook.png");
+.social-midia a[href$="https://www.facebook.com/UTFPR/"]:before
+{
+  content: url("../img/facebook.png");
 }
 
-.social-midia a[href$="https://www.linkedin.com/school/utfpr-oficial/?originalSubdomain=br"]:before {
-  content: url("../linkedin.png");
+.social-midia a[href$="https://www.linkedin.com/school/utfpr-oficial/?originalSubdomain=br"]:before
+{
+  content: url("../img/linkedin.png");
 }
 </style>

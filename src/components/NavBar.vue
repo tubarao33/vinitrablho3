@@ -2,11 +2,11 @@
 import { computed, ref, onMounted, watch } from "vue";
 import { useRouter } from "vue-router";
 import { routes } from "@/router";
-import { useI18n } from "vue-i18n";  // Importando useI18n para tradução
+import { useI18n } from "vue-i18n"; // Importando useI18n para tradução
 
 const siteUrl = import.meta.env.VITE_BUILD_ADDRESS || "";
 const router = useRouter();
-const { t, locale } = useI18n();  // Adicionando 'locale' para mudar o idioma
+const { t, locale } = useI18n(); // Adicionando 'locale' para mudar o idioma
 
 const activeRoute = computed(() => router.currentRoute.value.path);
 const isActive = (path: string) => path === activeRoute.value;
@@ -32,7 +32,9 @@ const changeLanguage = (lang: string) => {
 
 // Detectar o tema atual do navegador
 const detectThemeFromSystem = () => {
-  const isDarkModePreferred = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const isDarkModePreferred = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  ).matches;
   darkMode.value = isDarkModePreferred;
   applyTheme();
 };
@@ -50,19 +52,21 @@ watch(darkMode, applyTheme);
 // Detecta a mudança de preferência do sistema
 onMounted(() => {
   detectThemeFromSystem(); // Aplica o tema do navegador inicialmente
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", detectThemeFromSystem);
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", detectThemeFromSystem);
 
   // Carrega o idioma salvo, se houver
   const savedLanguage = localStorage.getItem("language");
-  if (savedLanguage && languages.some(lang => lang.code === savedLanguage)) {
+  if (savedLanguage && languages.some((lang) => lang.code === savedLanguage)) {
     locale.value = savedLanguage;
   }
 });
 // Sistema de busca interna
 const query = ref("");
 const filteredRoutes = computed(() => {
-  return routes.filter(route =>
-    route.children?.some(child =>
+  return routes.filter((route) =>
+    route.children?.some((child) =>
       child.name?.toLowerCase().includes(query.value.toLowerCase())
     )
   );
@@ -73,39 +77,94 @@ const filteredRoutes = computed(() => {
   <nav class="navbar navbar-expand-md bg-body-tertiary sticky-top">
     <div class="container">
       <a class="navbar-brand" href="#">V0: VUE3 + BT5</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
+      <div
+        class="collapse navbar-collapse d-flex justify-content-between"
+        id="navbarNav"
+      >
         <ul class="navbar-nav">
-          <li class="nav-item text-uppercase" v-for="route in routes" :key="route.path">
-            <router-link :to="route.path" class="nav-link" :title="route.children[0]?.name" :class="{ active: isActive(route.path) }">
-              <i class="bi bi-house-fill" v-if="route.path === `${siteUrl}/`"></i>
-              {{ route.children[0]?.name ? t(`routes.${route.children[0].name.toLowerCase()}`) : "" }}
+          <li
+            class="nav-item text-uppercase"
+            v-for="route in routes"
+            :key="route.path"
+          >
+            <router-link
+              :to="route.path"
+              class="nav-link"
+              :title="route.children[0]?.name"
+              :class="{ active: isActive(route.path) }"
+            >
+              <i
+                class="bi bi-house-fill"
+                v-if="route.path === `${siteUrl}/`"
+              ></i>
+              {{
+                route.children[0]?.name
+                  ? t(`routes.${route.children[0].name.toLowerCase()}`)
+                  : ""
+              }}
             </router-link>
           </li>
         </ul>
         <div class="d-flex align-items-center">
-          <input v-model="query" type="text" placeholder="Buscar..." class="form-control me-2" />
+          <input
+            v-model="query"
+            type="text"
+            placeholder="Buscar..."
+            class="form-control me-2"
+          />
           <ul v-if="query && filteredRoutes.length" class="search-results">
             <li v-for="route in filteredRoutes" :key="route.path">
-              {{ route.children?.[0]?.name || t('navbar.noResults') }}
+              {{ route.children?.[0]?.name || t("navbar.noResults") }}
             </li>
           </ul>
           <div class="language-selector">
-            <button class="btn btn-outline-secondary dropdown-toggle" @click="isLanguageOpen = !isLanguageOpen" :aria-expanded="isLanguageOpen">
-              {{ t('language') }}: {{ languages.find(lang => lang.code === locale.value)?.name || "Português" }} <span class="caret"></span>
+            <button
+              class="btn btn-outline-secondary dropdown-toggle"
+              @click="isLanguageOpen = !isLanguageOpen"
+              :aria-expanded="isLanguageOpen"
+            >
+              {{ t("language") }}:
+              {{
+                languages.find((lang) => lang.code === locale.value)?.name ||
+                "Português"
+              }}
+              <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu" :class="{ show: isLanguageOpen }" @click.stop>
-              <li v-for="lang in languages" :key="lang.code" class="dropdown-item" @click="changeLanguage(lang.code)">
+            <ul
+              class="dropdown-menu"
+              :class="{ show: isLanguageOpen }"
+              @click.stop
+            >
+              <li
+                v-for="lang in languages"
+                :key="lang.code"
+                class="dropdown-item"
+                @click="changeLanguage(lang.code)"
+              >
                 {{ lang.name }}
               </li>
             </ul>
           </div>
           <div class="form-check form-switch ms-3">
-            <input class="form-check-input" type="checkbox" id="darkModeSwitch" v-model="darkMode">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="darkModeSwitch"
+              v-model="darkMode"
+            />
             <label class="form-check-label" for="darkModeSwitch">
-              {{ t('navbar.darkMode') }}
+              {{ t("navbar.darkMode") }}
             </label>
           </div>
         </div>
@@ -219,5 +278,5 @@ const filteredRoutes = computed(() => {
   margin: 0;
   position: absolute;
   z-index: 1000;
-  }
+}
 </style>
