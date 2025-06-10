@@ -15,7 +15,6 @@ const darkMode = ref(false);
 
 // Lista de idiomas disponíveis
 const languages = [
-  { code: "pt", name: "Português" },
   { code: "en", name: "English" },
   { code: "es", name: "Español" },
 ];
@@ -25,9 +24,9 @@ const isLanguageOpen = ref(false);
 
 // Função para trocar o idioma
 const changeLanguage = (lang: string) => {
-  locale.value = lang; // Atualiza o idioma via vue-i18n
-  isLanguageOpen.value = false; // Fecha o dropdown após a seleção
-  localStorage.setItem("language", lang); // Opcional: salva a preferência do usuário
+  locale.value = lang;
+  isLanguageOpen.value = false;
+  localStorage.setItem("language", lang);
 };
 
 // Detectar o tema atual do navegador
@@ -39,30 +38,26 @@ const detectThemeFromSystem = () => {
   applyTheme();
 };
 
-// Aplica o tema atual
 const applyTheme = () => {
   const theme = darkMode.value ? "dark" : "light";
   document.documentElement.setAttribute("data-bs-theme", theme);
   localStorage.setItem("theme", theme);
 };
 
-// Atualiza o tema quando o switch for alterado
 watch(darkMode, applyTheme);
 
-// Detecta a mudança de preferência do sistema
 onMounted(() => {
-  detectThemeFromSystem(); // Aplica o tema do navegador inicialmente
+  detectThemeFromSystem();
   window
     .matchMedia("(prefers-color-scheme: dark)")
     .addEventListener("change", detectThemeFromSystem);
 
-  // Carrega o idioma salvo, se houver
   const savedLanguage = localStorage.getItem("language");
   if (savedLanguage && languages.some((lang) => lang.code === savedLanguage)) {
     locale.value = savedLanguage;
   }
 });
-// Sistema de busca interna
+
 const query = ref("");
 const filteredRoutes = computed(() => {
   return routes.filter((route) =>
@@ -104,10 +99,7 @@ const filteredRoutes = computed(() => {
               :title="route.children[0]?.name"
               :class="{ active: isActive(route.path) }"
             >
-              <i
-                class="bi bi-house-fill"
-                v-if="route.path === `${siteUrl}/`"
-              ></i>
+              <i v-if="route.path === `${siteUrl}/`"></i>
               {{
                 route.children[0]?.name
                   ? t(`routes.${route.children[0].name.toLowerCase()}`)
@@ -120,7 +112,7 @@ const filteredRoutes = computed(() => {
           <input
             v-model="query"
             type="text"
-            placeholder="Buscar..."
+            :placeholder="t('navbar.search')"
             class="form-control me-2"
           />
           <ul v-if="query && filteredRoutes.length" class="search-results">
@@ -128,6 +120,8 @@ const filteredRoutes = computed(() => {
               {{ route.children?.[0]?.name || t("navbar.noResults") }}
             </li>
           </ul>
+
+          <!-- ✅ BOTÃO DE IDIOMA MODIFICADO -->
           <div class="language-selector">
             <button
               class="btn btn-outline-secondary dropdown-toggle"
@@ -135,10 +129,9 @@ const filteredRoutes = computed(() => {
               :aria-expanded="isLanguageOpen"
             >
               {{ t("language") }}:
-              {{
-                languages.find((lang) => lang.code === locale.value)?.name ||
-                "Português"
-              }}
+              <span class="text-success">{{
+                t("languageNames." + locale)
+              }}</span>
               <span class="caret"></span>
             </button>
             <ul
@@ -156,6 +149,7 @@ const filteredRoutes = computed(() => {
               </li>
             </ul>
           </div>
+
           <div class="form-check form-switch ms-3">
             <input
               class="form-check-input"
@@ -182,7 +176,6 @@ const filteredRoutes = computed(() => {
   margin-top: 8px;
 }
 
-/* Estilização do dropdown de idioma */
 .language-selector {
   position: relative;
   margin-right: 1rem;
@@ -206,7 +199,7 @@ const filteredRoutes = computed(() => {
   top: 100%;
   left: 0;
   min-width: 150px;
-  background-color: #343a40; /* Cor de fundo escura, ajustável para modo escuro */
+  background-color: #343a40;
   border: 1px solid #495057;
   border-radius: 0.25rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -245,7 +238,6 @@ const filteredRoutes = computed(() => {
   border-left: 4px solid transparent;
 }
 
-/* Ajuste para modo escuro */
 [data-bs-theme="dark"] .btn-outline-secondary {
   border-color: #ffffff;
   color: #ffffff;
@@ -256,27 +248,3 @@ const filteredRoutes = computed(() => {
   color: #000000;
   border-color: #ffffff;
 }
-
-[data-bs-theme="dark"] .dropdown-menu {
-  background-color: #212529; /* Cor de fundo ainda mais escura para modo escuro */
-  border-color: #343a40;
-}
-
-[data-bs-theme="dark"] .dropdown-item:hover {
-  background-color: #343a40;
-}
-.form-switch {
-  margin-top: 8px;
-}
-.search-results {
-  background-color: white;
-  border: 1px solid #ccc;
-  max-height: 200px;
-  overflow-y: auto;
-  padding: 0;
-  list-style: none;
-  margin: 0;
-  position: absolute;
-  z-index: 1000;
-}
-</style>
