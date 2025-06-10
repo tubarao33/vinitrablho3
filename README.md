@@ -8,6 +8,11 @@ O esperado de um projeto incial:
 - [ ] Pensar no site com a pasta layouts?!?
 - [ ] Busca interna ??? [algolia](https://www.algolia.com/developers) [typesense](https://typesense.org/)
 - [ ] Blog / Notícias ???
+- [ ] Mais frameworks CSS??? (beer, taywind)(templates)
+- [ ] Mais modelos de rodapé e menu principal
+- [ ] Colocar os ícones do bootstrap5
+- [ ] Colocar mais palavras na tradução (i18n.json)
+
 
 ## Referências:
 - [howbizarre](https://github.com/howbizarre/starter-template-vue-3-bootstrap-5-sass-dark-theme-typescript)
