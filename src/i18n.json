@@ -3,6 +3,7 @@
     "welcome": "Welcome to our website!",
     "language": "Language",
     "navbar": {
+      "search": "Search",
       "darkMode": "Dark Mode"
     },
     "routes": {
@@ -26,41 +27,17 @@
         "privacy": "Privacy Policy"
       },
       "copyright": "© 2025 Federal University of Technology – Paraná. All rights reserved."
-    }
-  },
-  "pt": {
-    "welcome": "Bem-vindo ao nosso site!",
-    "language": "Idioma",
-    "navbar": {
-      "darkMode": "Modo Escuro"
     },
-    "routes": {
-      "home": "Início",
-      "about": "Sobre",
-      "contact": "Contato"
-    },
-    "footer": {
-      "title": "Universidade Tecnológica Federal do Paraná - UTFPR",
-      "description": "A UTFPR é uma instituição de ensino superior voltada à tecnologia e inovação, oferecendo cursos de graduação, pós-graduação e pesquisa.",
-      "contact": "Entre em contato",
-      "address": "R. Cristo Rei, 19 - Vila Becker, Toledo - PR, 85902-490",
-      "phone": "(45) 3379-6800",
-      "email": "contato@utfpr.edu.br",
-      "links": {
-        "about": "Sobre a UTFPR",
-        "courses": "Cursos",
-        "research": "Pesquisa",
-        "contact": "Fale Conosco",
-        "accessibility": "Acessibilidade",
-        "privacy": "Política de Privacidade"
-      },
-      "copyright": "© 2025 Universidade Tecnológica Federal do Paraná. Todos os direitos reservados."
+    "languageNames": {
+      "en": "English",
+      "es": "Spanish"
     }
   },
   "es": {
     "welcome": "¡Bienvenido a nuestro sitio web!",
     "language": "Idioma",
     "navbar": {
+      "search": "Buscar",
       "darkMode": "Modo Oscuro"
     },
     "routes": {
@@ -84,6 +61,10 @@
         "privacy": "Política de Privacidad"
       },
       "copyright": "© 2025 Universidad Tecnológica Federal de Paraná. Todos los derechos reservados."
+    },
+    "languageNames": {
+      "en": "Inglés",
+      "es": "Español"
     }
   }
 }
