@@ -22,11 +22,12 @@
           </div>
 
           <div class="col">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Campus_UFTPR-Toledo_2023.jpeg"
-              alt="UTFPR Toledo"
-              style="width: 100%; border-radius: 10px;"
-            />
+           <img
+  src="/utfpr-toledo.jpeg"
+  alt="UTFPR Toledo"
+  style="width: 100%; border-radius: 10px;"
+/>
+
           </div>
         </div>
       </div>
