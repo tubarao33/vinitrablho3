@@ -1,43 +1,77 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import Navbar from "@/components/NavBar.vue"; // Importe o Navbar.vue
-import AppCarousel from "@/components/AppCarousel.vue"; // Renomeie Carousel para AppCarousel
+import { useRoute } from "vue-router";
 
-const { t } = useI18n(); // Remova 'locale' pois não é usado
+import NavBar from "@/components/NavBar.vue";
+import AppCarousel from "@/components/AppCarousel.vue";
+
+const { t } = useI18n();
+const route = useRoute();
 </script>
 
 <template>
   <div id="app">
-    <!-- Exibição do texto traduzido (mantido) -->
-    <h1>{{ t("welcome") }}</h1>
+    <!-- Navbar com os botões -->
+    <NavBar />
 
-    <!-- Barra de navegação com o dropdown de idioma estilizado, links e modo escuro -->
-    <Navbar />
+    <!-- Título apenas na home -->
+    <h1 v-if="route.path === '/'">{{ t("welcome") }}</h1>
 
-    <!-- Adiciona o carrossel -->
-    <AppCarousel /> <!-- Atualize para AppCarousel -->
+    <!-- Carrossel visível em todas as rotas -->
+    <AppCarousel />
 
-    <!-- Renderiza as rotas (HomeView, AboutView, ContactsView, etc.) -->
+    <!-- Conteúdo da rota atual -->
     <RouterView />
+
+    <!-- Seção de Contato aparece apenas em /contacts -->
+    <section
+      v-if="route.path === '/contacts'"
+      class="container text-center py-5"
+    >
+      <h2 class="fw-bold">Contato</h2>
+      <p class="text-muted">Fale conosco</p>
+      <p>Se você tiver dúvidas ou sugestões, entre em contato:</p>
+      <p><strong>Email:</strong> vinicius@utfpr.edu.br</p>
+      <p><strong>Telefone:</strong> (45) 99999-9999</p>
+      <p><strong>Endereço:</strong> UTFPR - Campus Toledo, PR</p>
+    </section>
   </div>
 </template>
 
 <style scoped>
-/* Estilos para ajustar o layout, consistentes com a imagem */
 #app {
-  padding-top: 0; /* Remove qualquer padding indesejado no topo */
-  background-color: #212529; /* Fundo escuro, consistente com a imagem */
-  color: #ffffff; /* Texto branco, consistente com o design */
+  padding-top: 0;
+  min-height: 100vh;
+  background-color: var(--bs-body-bg, #212529);
+  color: var(--bs-body-color, #ffffff);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 h1 {
   text-align: center;
   padding: 1rem 0;
-  margin: 0; /* Remove margens padrão para alinhar com a navbar */
+  margin: 0;
 }
 
-/* Ajuste adicional para o carrossel */
-.carousel {
-  margin: 20px auto; /* Adiciona um espaço acima e abaixo do carrossel */
+/* Corrige cor do modo claro para texto secundário */
+.text-muted {
+  color: var(--bs-secondary-color, #6c757d) !important;
+}
+</style>
+
+<style>
+/* Estilo global para garantir que o Bootstrap reconheça o tema */
+:root[data-bs-theme="dark"] {
+  --bs-body-bg: #212529;
+  --bs-body-color: #ffffff;
+  --bs-secondary-color: #aaaaaa;
+}
+
+:root[data-bs-theme="light"] {
+  --bs-body-bg: #ffffff;
+  --bs-body-color: #212529;
+  --bs-secondary-color: #6c757d;
 }
 </style>

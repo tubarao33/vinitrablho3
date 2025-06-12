@@ -1,69 +1,53 @@
-<script lang="ts" setup>
-import { computed, ref, onMounted, watch } from "vue";
+<script setup lang="ts">
+import { computed, ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { routes } from "@/router";
 import { useI18n } from "vue-i18n";
 
-const siteUrl = import.meta.env.VITE_BUILD_ADDRESS || "";
 const router = useRouter();
 const { t, locale } = useI18n();
 
 const activeRoute = computed(() => router.currentRoute.value.path);
 const isActive = (path: string) => path === activeRoute.value;
 
-/* tema claro/escuro */
-const darkMode = ref(false);
-const detectThemeFromSystem = () => {
-  darkMode.value = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  applyTheme();
-};
-const applyTheme = () => {
-  document.documentElement.setAttribute(
-    "data-bs-theme",
-    darkMode.value ? "dark" : "light"
-  );
-  localStorage.setItem("theme", darkMode.value ? "dark" : "light");
-};
-watch(darkMode, applyTheme);
+const query = ref("");
+const filteredRoutes = computed(() =>
+  routes.filter((route) =>
+    route.name?.toLowerCase().includes(query.value.toLowerCase())
+  )
+);
 
-/* idiomas */
 const languages = [
   { code: "pt", name: "Português" },
   { code: "en", name: "English" },
-  { code: "es", name: "Español" }
+  { code: "es", name: "Español" },
 ];
 const isLanguageOpen = ref(false);
+
 const changeLanguage = (lang: string) => {
   locale.value = lang;
   isLanguageOpen.value = false;
   localStorage.setItem("language", lang);
 };
 
+const darkMode = ref(false);
+const applyTheme = () => {
+  const theme = darkMode.value ? "dark" : "light";
+  document.documentElement.setAttribute("data-bs-theme", theme);
+  document.body.setAttribute("data-bs-theme", theme);
+  localStorage.setItem("theme", theme);
+};
+
 onMounted(() => {
-  detectThemeFromSystem();
-  window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", detectThemeFromSystem);
-
-  const savedLanguage = localStorage.getItem("language");
-  if (savedLanguage && languages.some((l) => l.code === savedLanguage)) {
-    locale.value = savedLanguage;
-  }
+  darkMode.value = localStorage.getItem("theme") === "dark";
+  applyTheme();
 });
-
-/* busca */
-const query = ref("");
-const filteredRoutes = computed(() =>
-  routes.filter((r) =>
-    r.children?.some((c) =>
-      c.name?.toLowerCase().includes(query.value.toLowerCase())
-    )
-  )
-);
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-md bg-body-tertiary sticky-top">
+  <nav
+    class="navbar navbar-expand-md sticky-top bg-body-tertiary animate__animated animate__fadeInDown"
+  >
     <div class="container">
       <button
         class="navbar-toggler"
@@ -80,43 +64,35 @@ const filteredRoutes = computed(() =>
         id="navbarNav"
         class="collapse navbar-collapse d-flex justify-content-between"
       >
-        <!-- links das rotas -->
         <ul class="navbar-nav">
           <li
             v-for="route in routes"
             :key="route.path"
             class="nav-item text-uppercase"
           >
-            <router-link
+            <RouterLink
               :to="route.path"
               class="nav-link"
               :class="{ active: isActive(route.path) }"
             >
-              {{
-                route.children[0]?.name
-                  ? t(`routes.${route.children[0].name.toLowerCase()}`)
-                  : ""
-              }}
-            </router-link>
+              {{ route.name ? t(`routes.${route.name.toLowerCase()}`) : "" }}
+            </RouterLink>
           </li>
         </ul>
 
-        <!-- busca + idioma + switch tema -->
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center position-relative">
           <input
             v-model="query"
             :placeholder="t('navbar.search')"
             class="form-control me-2"
           />
 
-          <!-- dropdown resultados -->
           <ul v-if="query && filteredRoutes.length" class="search-results">
             <li v-for="r in filteredRoutes" :key="r.path">
-              {{ r.children?.[0]?.name || t("navbar.noResults") }}
+              {{ r.name || t("navbar.noResults") }}
             </li>
           </ul>
 
-          <!-- seletor de idioma -->
           <div class="language-selector">
             <button
               class="btn btn-outline-secondary dropdown-toggle"
@@ -124,9 +100,9 @@ const filteredRoutes = computed(() =>
               :aria-expanded="isLanguageOpen"
             >
               {{ t("language") }}:
-              <span class="text-success">
-                {{ t("languageNames." + locale) }}
-              </span>
+              <span class="text-success">{{
+                t("languageNames." + locale)
+              }}</span>
             </button>
 
             <ul
@@ -145,13 +121,13 @@ const filteredRoutes = computed(() =>
             </ul>
           </div>
 
-          <!-- dark-mode switch -->
           <div class="form-check form-switch ms-3">
             <input
               id="darkModeSwitch"
               class="form-check-input"
               type="checkbox"
               v-model="darkMode"
+              @change="applyTheme"
             />
             <label class="form-check-label" for="darkModeSwitch">
               {{ t("navbar.darkMode") }}
@@ -167,11 +143,9 @@ const filteredRoutes = computed(() =>
 .navbar {
   padding: 0.5rem 1rem;
 }
-
-/* === links do menu: hover + ativo === */
 .nav-link {
   position: relative;
-  color: #fff;
+  color: var(--bs-nav-link-color);
   padding: 0.5rem 0.75rem;
   transition: color 0.3s;
 }
@@ -188,53 +162,17 @@ const filteredRoutes = computed(() =>
 .nav-link:hover {
   color: #0dcaf0;
 }
-.nav-link:hover::after {
-  width: 100%;
-}
-.router-link-active,
-.nav-link.active {
-  color: #0dcaf0;
-}
-.router-link-active::after,
+.nav-link:hover::after,
 .nav-link.active::after {
   width: 100%;
 }
-
-/* Dropdown idioma */
+.nav-link.active {
+  color: #0dcaf0;
+}
 .language-selector {
   position: relative;
   margin-right: 1rem;
 }
-
-.btn-outline-secondary {
-  background: transparent;
-  border-color: #fff;
-  color: #fff;
-  transition: 0.3s;
-}
-.btn-outline-secondary:hover {
-  background: #fff;
-  color: #000;
-}
-
-.dropdown-menu {
-  min-width: 150px;
-  background: #343a40;
-  border: 1px solid #495057;
-  display: none;
-}
-.dropdown-menu.show {
-  display: block;
-}
-
-.dropdown-item {
-  color: #fff;
-}
-.dropdown-item:hover {
-  background: #495057;
-}
-
-/* resultado da busca */
 .search-results {
   position: absolute;
   top: 100%;
@@ -250,4 +188,3 @@ const filteredRoutes = computed(() =>
   width: 100%;
 }
 </style>
-

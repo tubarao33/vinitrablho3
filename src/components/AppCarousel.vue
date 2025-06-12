@@ -1,26 +1,31 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const currentSlide = ref(0)
+const currentSlide = ref(0);
 const slides = [
-  { image: 'https://imgur.com/cfAFVYp.jpeg', title: 'UTFPR', description: 'UTFPR Entrada' },
-  { image: 'https://imgur.com/EqzHwzW.jpeg', title: 'A.A.A.T', description: 'TUT' },
-  { image: 'https://imgur.com/WrmGgEC.jpeg', title: 'UTFPR', description: 'UTFPR Bloco A' }
-]
+  {
+    image: "https://imgur.com/WrmGgEC.jpeg",
+  },
+];
 
-const nextSlide = () => { currentSlide.value = (currentSlide.value + 1) % slides.length }
-const prevSlide = () => { currentSlide.value = (currentSlide.value - 1 + slides.length) % slides.length }
-const goToSlide = (index: number) => { currentSlide.value = index }
+const nextSlide = () => {
+  currentSlide.value = (currentSlide.value + 1) % slides.length;
+};
+const prevSlide = () => {
+  currentSlide.value = (currentSlide.value - 1 + slides.length) % slides.length;
+};
+const goToSlide = (index: number) => {
+  currentSlide.value = index;
+};
 </script>
 
 <template>
   <div class="carousel">
-    <div class="slides-container" :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
-      <div 
-        v-for="(slide, index) in slides" 
-        :key="index"
-        class="slide"
-      >
+    <div
+      class="slides-container"
+      :style="{ transform: `translateX(-${currentSlide * 100}%)` }"
+    >
+      <div v-for="(slide, index) in slides" :key="index" class="slide">
         <img :src="slide.image" :alt="slide.title" />
         <div class="slide-content">
           <h3>{{ slide.title }}</h3>
@@ -28,15 +33,15 @@ const goToSlide = (index: number) => { currentSlide.value = index }
         </div>
       </div>
     </div>
-    
+
     <button class="prev" @click="prevSlide">❮</button>
     <button class="next" @click="nextSlide">❯</button>
-    
+
     <div class="indicators">
-      <span 
-        v-for="(slide, index) in slides" 
-        :key="index" 
-        :class="{ 'active': index === currentSlide }"
+      <span
+        v-for="(slide, index) in slides"
+        :key="index"
+        :class="{ active: index === currentSlide }"
         @click="goToSlide(index)"
       ></span>
     </div>
@@ -76,7 +81,8 @@ const goToSlide = (index: number) => { currentSlide.value = index }
   padding: 10px;
 }
 
-.prev, .next {
+.prev,
+.next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);

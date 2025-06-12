@@ -1,44 +1,82 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import Navbar from "@/components/NavBar.vue"; // Importe o Navbar.vue
-import AppCarousel from "@/components/AppCarousel.vue"; // Renomeie Carousel para AppCarousel
+import { ref, computed, onMounted, nextTick } from "vue";
+import { useRoute } from "vue-router";
 
-const { t } = useI18n(); // Remova 'locale' pois não é usado
+import NavBar from "@/components/NavBar.vue";
+import FooterBar from "@/components/FooterBar.vue";
+
+const route = useRoute();
+const isHomeRoute = computed(() => route.path === "/");
+
+const darkMode = ref(false);
+const themeClass = computed(() =>
+  darkMode.value ? "theme-dark" : "theme-light"
+);
+
+// Posição dinâmica da seta
+const setaLeft = ref("0px");
+
+const detectSystemTheme = () => {
+  darkMode.value = window.matchMedia("(prefers-color-scheme: dark)").matches;
+};
+
+// Posiciona a seta abaixo do botão "SOBRE"
+const alinharSetaComSobre = () => {
+  const sobreLink =
+    document.querySelector('a[href="/about"]') ||
+    document.querySelector('a[href="/sobre"]');
+  if (sobreLink) {
+    const rect = (sobreLink as HTMLElement).getBoundingClientRect();
+    setaLeft.value = `${rect.left + rect.width / 2}px`;
+  }
+};
+
+onMounted(() => {
+  detectSystemTheme();
+  nextTick(() => {
+    alinharSetaComSobre();
+    window.addEventListener("resize", alinharSetaComSobre);
+  });
+});
 </script>
 
 <template>
-  <div id="app">
-    <!-- Exibição do texto traduzido (mantido) -->
-    <h1>{{ t("welcome") }}</h1>
+  <div :class="['app-wrapper', themeClass]">
+    <NavBar />
 
-    <!-- Barra de navegação com o dropdown de idioma estilizado, links e modo escuro -->
-    <Navbar />
+    <!-- Seta só visível na home -->
+    <div
+      v-if="isHomeRoute"
+      class="indicador-menu-sobre"
+      :style="{ left: setaLeft }"
+    >
+      <i
+        class="bi bi-arrow-down-circle-fill animate__animated animate__bounce"
+      ></i>
+      <p class="small text-light">Comece por "Sobre"</p>
+    </div>
 
-    <!-- Adiciona o carrossel -->
-    <AppCarousel />
-    <!-- Atualize para AppCarousel -->
-
-    <!-- Renderiza as rotas (HomeView, AboutView, ContactsView, etc.) -->
     <RouterView />
+
+    <!-- Rodapé aparece apenas fora da Home -->
+    <FooterBar v-if="!isHomeRoute" />
   </div>
 </template>
 
 <style scoped>
-/* Estilos para ajustar o layout, consistentes com a imagem */
-#app {
-  padding-top: 0; /* Remove qualquer padding indesejado no topo */
-  background-color: #212529; /* Fundo escuro, consistente com a imagem */
-  color: #ffffff; /* Texto branco, consistente com o design */
+.indicador-menu-sobre {
+  position: absolute;
+  top: 60px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateX(-50%);
 }
 
-h1 {
-  text-align: center;
-  padding: 1rem 0;
-  margin: 0; /* Remove margens padrão para alinhar com a navbar */
-}
-
-/* Ajuste adicional para o carrossel */
-.carousel {
-  margin: 20px auto; /* Adiciona um espaço acima e abaixo do carrossel */
+.indicador-menu-sobre i {
+  font-size: 1.7rem;
+  color: #0d6efd;
 }
 </style>

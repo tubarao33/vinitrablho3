@@ -1,150 +1,102 @@
 <template>
-  <div class="footer-bar row fixed-bottom">
-    <div class="col-xxl-4 offset-xxl-2">
-      <div class="Footer-title text-xxl-center">
-        <h4>{{ $t("footer.title") }}</h4>
-        <p>{{ $t("footer.description") }}</p>
-      </div>
+  <footer
+    class="pt-4 pb-3 position-relative text-center animate__animated animate__fadeIn"
+  >
+    <div class="container">
+      <p class="mb-2 small">
+        © 2025 Universidade Tecnológica Federal do Paraná (UTFPR) –
+        Desenvolvido por Vinícius Tabarão
+      </p>
 
-      <div class="social-links fixed-bottom m-0 p-0">
-        <ul class="lista col-xxl-8 text-xxl-center">
-          <li class="social-midia">
-            <a
-              href="https://whatsapp.com/channel/0029Vb3tWIO3wtb3Jvag6Z0H"
-              target="_blank"
-            ></a>
-          </li>
-          <li class="social-midia">
-            <a href="https://twitter.com/utfpr_" target="_blank"></a>
-          </li>
-          <li class="social-midia">
-            <a href="https://www.youtube.com/canaldaUTFPR" target="_blank"></a>
-          </li>
-          <li class="social-midia">
-            <a href="https://www.instagram.com/utfpr_/" target="_blank"></a>
-          </li>
-          <li class="social-midia">
-            <a href="https://www.facebook.com/UTFPR/" target="_blank"></a>
-          </li>
-          <li class="social-midia">
-            <a
-              href="https://www.linkedin.com/school/utfpr-oficial/?originalSubdomain=br"
-              target="_blank"
-            ></a>
-          </li>
-        </ul>
+      <!-- Redes sociais -->
+      <div class="d-flex justify-content-center gap-4 mb-2">
+        <a
+          href="https://facebook.com"
+          target="_blank"
+          class="social-icon text-reset"
+        >
+          <i class="bi bi-facebook"></i>
+        </a>
+        <a
+          href="https://instagram.com"
+          target="_blank"
+          class="social-icon text-reset"
+        >
+          <i class="bi bi-instagram"></i>
+        </a>
+        <a
+          href="https://github.com/tubarao33"
+          target="_blank"
+          class="social-icon text-reset"
+        >
+          <i class="bi bi-github"></i>
+        </a>
+        <a
+          href="https://linkedin.com"
+          target="_blank"
+          class="social-icon text-reset"
+        >
+          <i class="bi bi-linkedin"></i>
+        </a>
       </div>
     </div>
 
-    <div class="col-xxl-2 offset-xxl-2">
-      <div class="Footer-title text-xxl-center">
-        <h4>{{ $t("footer.contact") }}</h4>
-        <ul>
-          <li>
-            <a
-              href="https://maps.app.goo.gl/2Qv9AmF8pPXBYeFK9"
-              target="_blank"
-              >{{ $t("footer.address") }}</a
-            >
-          </li>
-          <li>
-            <a href="tel:+55453379-6800">{{ $t("footer.phone") }}</a>
-          </li>
-          <li>
-            <a href="mailto:epsantos@utfpr.edu.br">{{ $t("footer.email") }}</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+    <!-- Botão flutuante para voltar ao topo -->
+    <button
+      v-show="showButton"
+      class="btn btn-primary scroll-top animate__animated animate__fadeIn"
+      @click="scrollToTop"
+      aria-label="Voltar ao topo"
+    >
+      <i class="bi bi-arrow-up-short"></i>
+    </button>
+  </footer>
 </template>
 
 <script setup lang="ts">
-import { useI18n } from "vue-i18n";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 
-// Acessar a função t para tradução
-useI18n();
+const showButton = ref(false);
+
+const handleScroll = () => {
+  showButton.value = window.scrollY > 200;
+};
+
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+onMounted(() => window.addEventListener("scroll", handleScroll));
+onBeforeUnmount(() => window.removeEventListener("scroll", handleScroll));
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap");
+@import "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css";
 
-.footer-bar {
-  background-color: #151515;
-  height: 22vh;
+/* Ícones sociais com transição */
+.social-icon {
+  font-size: 1.8rem;
+  transition: 0.3s;
 }
 
-.Footer-title {
-  padding-top: 25px;
+.social-icon:hover {
+  color: var(--bs-primary);
+  transform: scale(1.2);
 }
 
-h4 {
-  color: white;
-  font-family: "Oswald", serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-}
-
-p {
-  padding-top: 10px;
-  color: white;
-  font-family: "Oswald", serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-  font-size: 18px;
-}
-
-a {
-  font-family: "Oswald", serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-  font-size: 18px;
-}
-
-a,
-li {
-  text-decoration: none;
-  list-style-type: none;
-  padding-top: 10px;
-}
-
-ul {
-  padding: 0;
-}
-
-.social-midia {
-  display: inline-block;
-  padding: 15px;
-}
-
-.social-midia a[href$="https://www.instagram.com/utfpr_/"]:before
-{
-  content: url("../img/instagram.png");
-}
-
-.social-midia a[href$="https://twitter.com/utfpr_"]:before
-{
-  content: url("../img/twitter.png");
-}
-
-.social-midia a[href$="https://whatsapp.com/channel/0029Vb3tWIO3wtb3Jvag6Z0H"]:before
-{
-  content: url("../img/whatsapp.png");
-}
-
-.social-midia a[href$="https://www.youtube.com/canaldaUTFPR"]:before
-{
-  content: url("../img/youtube.png");
-}
-
-.social-midia a[href$="https://www.facebook.com/UTFPR/"]:before
-{
-  content: url("../img/facebook.png");
-}
-
-.social-midia a[href$="https://www.linkedin.com/school/utfpr-oficial/?originalSubdomain=br"]:before
-{
-  content: url("../img/linkedin.png");
+/* Botão flutuante */
+.scroll-top {
+  position: fixed;
+  bottom: 80px;
+  right: 30px;
+  width: 48px;
+  height: 48px;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 </style>
