@@ -5,7 +5,6 @@
       <p class="text-muted">Fale conosco</p>
     </div>
 
-    <!-- Entrada da UTFPR -->
     <div class="row justify-content-center mb-5">
       <div class="col-md-8 text-center">
         <img
@@ -17,7 +16,6 @@
       </div>
     </div>
 
-    <!-- Bloco e mapa -->
     <div class="row align-items-center justify-content-center g-4 mb-5">
       <div class="col-md-6 text-center">
         <img
@@ -41,11 +39,10 @@
       </div>
     </div>
 
-    <!-- Contato direto -->
     <div class="text-center mt-5">
       <p>Se você tiver dúvidas ou sugestões, entre em contato:</p>
       <p><strong>Email:</strong> vinicius@utfpr.edu.br</p>
-      <p><strong>Telefone:</strong> (45) 99999-9999</p>
+      <p><strong>Telefone:</strong> (44) 999307739</p>
       <p><strong>Endereço:</strong> UTFPR - Campus Toledo, PR</p>
 
       <!-- Botão WhatsApp -->

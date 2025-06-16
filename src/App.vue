@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useI18n } from "vue-i18n";
 import { ref, computed, onMounted, nextTick } from "vue";
 import { useRoute } from "vue-router";
 
@@ -21,7 +20,6 @@ const detectSystemTheme = () => {
   darkMode.value = window.matchMedia("(prefers-color-scheme: dark)").matches;
 };
 
-// Posiciona a seta abaixo do botão "SOBRE"
 const alinharSetaComSobre = () => {
   const sobreLink =
     document.querySelector('a[href="/about"]') ||
@@ -59,7 +57,6 @@ onMounted(() => {
 
     <RouterView />
 
-    <!-- Rodapé aparece apenas fora da Home -->
     <FooterBar v-if="!isHomeRoute" />
   </div>
 </template>

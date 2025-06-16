@@ -5,7 +5,7 @@
     <div class="container">
       <p class="mb-2 small">
         © 2025 Universidade Tecnológica Federal do Paraná (UTFPR) –
-        Desenvolvido por Vinícius Tabarão
+        Desenvolvido por Vinícius Tubarão
       </p>
 
       <!-- Redes sociais -->

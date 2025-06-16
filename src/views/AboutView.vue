@@ -10,7 +10,6 @@
       </p>
     </div>
 
-    <!-- TEXTO E IMAGEM PRINCIPAL -->
     <div class="row align-items-center g-5">
       <div class="col-md-6">
         <p>
@@ -22,7 +21,7 @@
           O projeto demonstra boas práticas de front-end, com suporte a
           múltiplos idiomas, formulário funcional e responsividade.
         </p>
-        <p>Desenvolvido por <strong>Vinícius Tabarão</strong>, aluno UTFPR.</p>
+        <p>Desenvolvido por <strong>Vinícius Tubarão </strong>, aluno UTFPR.</p>
       </div>
 
       <div class="col-md-6">
@@ -35,7 +34,6 @@
       </div>
     </div>
 
-    <!-- IMAGEM SECUNDÁRIA + MAPA -->
     <div class="row align-items-center justify-content-center g-4 my-5">
       <div class="col-md-6 text-center">
         <img
@@ -60,7 +58,6 @@
       </div>
     </div>
 
-    <!-- FORMULÁRIO DE CONTATO -->
     <div class="text-center my-5">
       <h2 class="fw-semibold">Fale conosco</h2>
     </div>
