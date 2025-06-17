@@ -14,7 +14,12 @@ export const routes = [
   {
     path: "/contacts",
     name: "Contacts",
-    component: () => import("../views/ContactsView.vue"), // ✅ Corrigido aqui
+    component: () => import("../views/ContactsView.vue"),
+  },
+  {
+    path: "/courses", // ✅ Nova rota adicionada
+    name: "Courses",
+    component: () => import("../views/CoursesView.vue"),
   },
 ];
 

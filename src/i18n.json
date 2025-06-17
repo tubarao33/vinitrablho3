@@ -10,7 +10,13 @@
       "home": "Início",
       "about": "Sobre",
       "contact": "Contato",
-      "contacts": "Contato"
+      "contacts": "Contato",
+      "courses": "Cursos"
+    },
+    "courses": {
+      "title": "Cursos da UTFPR",
+      "description": "Veja todos os cursos oferecidos no campus Toledo",
+      "placeholder": "Buscar curso..."
     },
     "footer": {
       "title": "Universidade Tecnológica Federal do Paraná (UTFPR)",
@@ -39,7 +45,13 @@
       "home": "Home",
       "about": "About",
       "contact": "Contact",
-      "contacts": "Contact"
+      "contacts": "Contact",
+      "courses": "Courses"
+    },
+    "courses": {
+      "title": "UTFPR Courses",
+      "description": "See all the courses offered at the Toledo campus",
+      "placeholder": "Search course..."
     },
     "footer": {
       "title": "Federal University of Technology – Paraná (UTFPR)",
@@ -68,7 +80,13 @@
       "home": "Inicio",
       "about": "Acerca",
       "contact": "Contacto",
-      "contacts": "Contacto"
+      "contacts": "Contacto",
+      "courses": "Cursos"
+    },
+    "courses": {
+      "title": "Cursos de la UTFPR",
+      "description": "Consulta todos los cursos ofrecidos en el campus de Toledo",
+      "placeholder": "Buscar curso..."
     },
     "footer": {
       "title": "Universidad Tecnológica Federal de Paraná (UTFPR)",
@@ -86,4 +104,3 @@
     }
   }
 }
-

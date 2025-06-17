@@ -10,12 +10,13 @@ const { t, locale } = useI18n();
 const activeRoute = computed(() => router.currentRoute.value.path);
 const isActive = (path: string) => path === activeRoute.value;
 
-const query = ref("");
-const filteredRoutes = computed(() =>
-  routes.filter((route) =>
-    route.name?.toLowerCase().includes(query.value.toLowerCase())
-  )
-);
+const searchQuery = ref("");
+const buscar = () => {
+  if (searchQuery.value.trim()) {
+    router.push({ path: "/courses", query: { q: searchQuery.value.trim() } });
+    searchQuery.value = "";
+  }
+};
 
 const languages = [
   { code: "pt", name: "Português" },
@@ -81,18 +82,17 @@ onMounted(() => {
         </ul>
 
         <div class="d-flex align-items-center position-relative">
-          <input
-            v-model="query"
-            :placeholder="t('navbar.search')"
-            class="form-control me-2"
-          />
+          <!-- CAMPO DE BUSCA FUNCIONAL -->
+          <form class="d-flex me-3" @submit.prevent="buscar">
+            <input
+              v-model="searchQuery"
+              type="text"
+              class="form-control"
+              :placeholder="t('navbar.search')"
+            />
+          </form>
 
-          <ul v-if="query && filteredRoutes.length" class="search-results">
-            <li v-for="r in filteredRoutes" :key="r.path">
-              {{ r.name || t("navbar.noResults") }}
-            </li>
-          </ul>
-
+          <!-- Selecionador de idioma -->
           <div class="language-selector">
             <button
               class="btn btn-outline-secondary dropdown-toggle"
@@ -121,6 +121,7 @@ onMounted(() => {
             </ul>
           </div>
 
+          <!-- Tema escuro -->
           <div class="form-check form-switch ms-3">
             <input
               id="darkModeSwitch"
@@ -172,19 +173,5 @@ onMounted(() => {
 .language-selector {
   position: relative;
   margin-right: 1rem;
-}
-.search-results {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #fff;
-  border: 1px solid #ccc;
-  max-height: 200px;
-  overflow-y: auto;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  z-index: 1000;
-  width: 100%;
 }
 </style>
