@@ -2,18 +2,33 @@
 import { ref } from "vue";
 
 const currentSlide = ref(0);
+
 const slides = [
   {
     image: "https://imgur.com/WrmGgEC.jpeg",
+    title: "Bem-vindo à UTFPR",
+    description: "Conheça nossos cursos, estrutura e oportunidades",
+  },
+  {
+    image: "https://imgur.com/WrmGgEC.jpeg",
+    title: "Laboratórios Modernos",
+    description: "Equipamentos de ponta para ensino e pesquisa",
+  },
+  {
+    image: "https://imgur.com/WrmGgEC.jpeg",
+    title: "Ambiente Acadêmico",
+    description: "Apoio ao aluno e espaços de convivência",
   },
 ];
 
 const nextSlide = () => {
   currentSlide.value = (currentSlide.value + 1) % slides.length;
 };
+
 const prevSlide = () => {
   currentSlide.value = (currentSlide.value - 1 + slides.length) % slides.length;
 };
+
 const goToSlide = (index: number) => {
   currentSlide.value = index;
 };
@@ -34,8 +49,8 @@ const goToSlide = (index: number) => {
       </div>
     </div>
 
-    <button class="prev" @click="prevSlide">❮</button>
-    <button class="next" @click="nextSlide">❯</button>
+    <button class="prev" @click="prevSlide">‹</button>
+    <button class="next" @click="nextSlide">›</button>
 
     <div class="indicators">
       <span
@@ -77,49 +92,48 @@ const goToSlide = (index: number) => {
   bottom: 20px;
   left: 20px;
   color: white;
-  background: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 10px;
+  border-radius: 8px;
 }
 
-.prev,
-.next {
+button.prev,
+button.next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
   padding: 10px;
   cursor: pointer;
+  z-index: 1;
 }
 
-.prev {
+button.prev {
   left: 10px;
 }
 
-.next {
+button.next {
   right: 10px;
 }
 
 .indicators {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
+  text-align: center;
+  margin-top: 10px;
 }
 
 .indicators span {
+  display: inline-block;
   width: 10px;
   height: 10px;
-  background: #fff;
+  background: #ccc;
   border-radius: 50%;
+  margin: 0 5px;
   cursor: pointer;
-  opacity: 0.5;
 }
 
-.indicators span.active {
-  opacity: 1;
+.indicators .active {
+  background: #333;
 }
 </style>

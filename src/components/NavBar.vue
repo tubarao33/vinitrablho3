@@ -46,9 +46,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <nav
-    class="navbar navbar-expand-md sticky-top bg-body-tertiary animate__animated animate__fadeInDown"
-  >
+  <nav class="navbar navbar-expand-md sticky-top bg-body-tertiary animate__animated animate__fadeInDown">
     <div class="container">
       <button
         class="navbar-toggler"
@@ -61,13 +59,10 @@ onMounted(() => {
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div
-        id="navbarNav"
-        class="collapse navbar-collapse d-flex justify-content-between"
-      >
+      <div id="navbarNav" class="collapse navbar-collapse d-flex justify-content-between">
         <ul class="navbar-nav">
           <li
-            v-for="route in routes"
+            v-for="route in routes.filter(r => !r.path.includes('/curso'))"
             :key="route.path"
             class="nav-item text-uppercase"
           >
@@ -82,7 +77,7 @@ onMounted(() => {
         </ul>
 
         <div class="d-flex align-items-center position-relative">
-          <!-- CAMPO DE BUSCA FUNCIONAL -->
+          <!-- Campo de busca -->
           <form class="d-flex me-3" @submit.prevent="buscar">
             <input
               v-model="searchQuery"
@@ -92,7 +87,7 @@ onMounted(() => {
             />
           </form>
 
-          <!-- Selecionador de idioma -->
+          <!-- Idiomas -->
           <div class="language-selector">
             <button
               class="btn btn-outline-secondary dropdown-toggle"
@@ -100,21 +95,12 @@ onMounted(() => {
               :aria-expanded="isLanguageOpen"
             >
               {{ t("language") }}:
-              <span class="text-success">{{
-                t("languageNames." + locale)
-              }}</span>
+              <span class="text-success">{{ t("languageNames." + locale) }}</span>
             </button>
 
-            <ul
-              class="dropdown-menu"
-              :class="{ show: isLanguageOpen }"
-              @click.stop
-            >
+            <ul class="dropdown-menu" :class="{ show: isLanguageOpen }" @click.stop>
               <li v-for="lang in languages" :key="lang.code">
-                <button
-                  class="dropdown-item w-100 text-start"
-                  @click="changeLanguage(lang.code)"
-                >
+                <button class="dropdown-item w-100 text-start" @click="changeLanguage(lang.code)">
                   {{ lang.name }}
                 </button>
               </li>

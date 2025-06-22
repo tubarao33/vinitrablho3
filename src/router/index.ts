@@ -17,9 +17,15 @@ export const routes = [
     component: () => import("../views/ContactsView.vue"),
   },
   {
-    path: "/courses", // ✅ Nova rota adicionada
+    path: "/courses",
     name: "Courses",
     component: () => import("../views/CoursesView.vue"),
+  },
+  {
+    path: "/curso/:id",
+    name: "curso", 
+    component: () => import("../views/CursoView.vue"),
+    props: true,  // ✅ permite acessar `id` como prop no CursoView.vue
   },
 ];
 
@@ -27,3 +33,4 @@ export const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+

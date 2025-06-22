@@ -15,136 +15,81 @@
       </div>
     </div>
 
-    <div id="lista-cursos" class="row row-cols-1 row-cols-md-3 g-4">
-      <div
-        class="col animate__animated animate__fadeInUp"
-        v-for="(curso, index) in cursosFiltrados"
-        :key="curso.id"
-        :style="{ animationDelay: `${index * 100}ms` }"
-      >
-        <div class="card h-100 shadow-sm card-hover">
-          <div class="card-body">
-            <h5 class="card-title">{{ curso.nome }}</h5>
-            <p class="card-text">{{ curso.descricao }}</p>
+    <div v-if="Object.keys(cursosPorCampus).length > 0" id="lista-cursos">
+      <div v-for="(lista, campus) in cursosPorCampus" :key="campus" class="mb-5">
+        <h3 class="text-info border-bottom pb-2">{{ campus }}</h3>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div
+            class="col animate__animated animate__fadeInUp"
+            v-for="(curso, index) in lista"
+            :key="curso.id"
+            :style="{ animationDelay: `${index * 100}ms` }"
+          >
+            <div
+              class="card h-100 shadow-sm card-hover"
+              role="button"
+              tabindex="0"
+              @click="irParaCurso(curso.id)"
+            >
+              <div class="card-body">
+                <h5 class="card-title">{{ curso.nome }}</h5>
+                <p class="card-text">{{ curso.descricao }}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <div v-if="cursosFiltrados.length === 0" class="col-12 text-center mt-4">
-        <p>{{ t("courses.noResults") }}</p>
-      </div>
+    <div v-else class="col-12 text-center mt-4">
+      <p>{{ t("courses.noResults") }}</p>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();
-const busca = ref("");
 const route = useRoute();
+const router = useRouter();
 
-// Preenche o campo busca se existir parâmetro de query ?q=
-busca.value = route.query.q?.toString() || "";
+const busca = ref(route.query.q?.toString() || "");
 
 const cursos = ref([
-  {
-    id: 1,
-    nome: "Engenharia de Software",
-    descricao: "Curso voltado para desenvolvimento de sistemas complexos.",
-  },
-  {
-    id: 2,
-    nome: "Sistemas para Internet",
-    descricao: "Curso com foco em aplicações web, front-end e back-end.",
-  },
-  {
-    id: 3,
-    nome: "Ciência da Computação",
-    descricao: "Abrange fundamentos teóricos e práticos da computação.",
-  },
-  {
-    id: 4,
-    nome: "Engenharia Eletrônica",
-    descricao:
-      "Forma profissionais capacitados em sistemas eletrônicos e automação.",
-  },
-  {
-    id: 5,
-    nome: "Engenharia Ambiental e Sanitária",
-    descricao:
-      "Foca na sustentabilidade, tratamento de resíduos e recursos hídricos.",
-  },
-  {
-    id: 6,
-    nome: "Engenharia de Bioprocessos e Biotecnologia",
-    descricao:
-      "Integra biotecnologia com processos industriais e laboratoriais.",
-  },
-  {
-    id: 7,
-    nome: "Licenciatura em Química",
-    descricao: "Forma professores com sólida base em química e didática.",
-  },
-  {
-    id: 8,
-    nome: "Administração",
-    descricao:
-      "Curso com foco em gestão, empreendedorismo e estratégia empresarial.",
-  },
-  {
-    id: 9,
-    nome: "Tecnologia em Processos Químicos",
-    descricao:
-      "Foca em operações industriais químicas com conhecimento técnico-aplicado.",
-  },
-  {
-    id: 10,
-    nome: "Tecnologia em Sistemas de Telecomunicações",
-    descricao:
-      "Curso com foco em redes, comunicação digital e sistemas de telecomunicações.",
-  },
-  {
-    id: 11,
-    nome: "Tecnologia em Manutenção Industrial",
-    descricao:
-      "Capacita para atuar em manutenção de sistemas industriais e equipamentos.",
-  },
-  {
-    id: 12,
-    nome: "Tecnologia em Automação Industrial",
-    descricao:
-      "Formação técnica voltada para automação de processos industriais.",
-  },
-  {
-    id: 13,
-    nome: "Tecnologia em Fabricação Mecânica",
-    descricao:
-      "Aborda fabricação mecânica com foco em processos industriais modernos.",
-  },
-  {
-    id: 14,
-    nome: "Engenharia de Produção",
-    descricao: "Foco em gestão da produção, processos e qualidade industrial.",
-  },
-  {
-    id: 15,
-    nome: "Tecnologia da Informação",
-    descricao:
-      "Curso voltado para infraestrutura, redes e suporte a sistemas de informação.",
-  },
+  { id: 1, nome: "Engenharia de Software", descricao: "Desenvolvimento de sistemas complexos.", campus: "Toledo" },
+  { id: 2, nome: "Sistemas para Internet", descricao: "Aplicações web, front-end e back-end.", campus: "Toledo" },
+  { id: 3, nome: "Ciência da Computação", descricao: "Fundamentos teóricos e práticos da computação.", campus: "Curitiba" },
+  { id: 4, nome: "Engenharia Eletrônica", descricao: "Sistemas eletrônicos e automação.", campus: "Londrina" },
+  { id: 5, nome: "Administração", descricao: "Gestão, empreendedorismo e estratégia empresarial.", campus: "Pato Branco" },
+  { id: 6, nome: "Tecnologia em Manutenção Industrial", descricao: "Manutenção de sistemas industriais.", campus: "Toledo" }
 ]);
 
 const cursosFiltrados = computed(() => {
   const termo = busca.value.toLowerCase();
   return cursos.value.filter(
-    (curso) =>
+    curso =>
       curso.nome.toLowerCase().includes(termo) ||
       curso.descricao.toLowerCase().includes(termo)
   );
 });
+
+const cursosPorCampus = computed(() => {
+  const agrupado: Record<string, typeof cursos.value> = {};
+  for (const curso of cursosFiltrados.value) {
+    if (!agrupado[curso.campus]) {
+      agrupado[curso.campus] = [];
+    }
+    agrupado[curso.campus].push(curso);
+  }
+  return agrupado;
+});
+
+const irParaCurso = (id: number) => {
+  router.push({ name: "curso", params: { id } });
+};
 
 const scrollToCursos = () => {
   const el = document.getElementById("lista-cursos");
@@ -162,3 +107,4 @@ const scrollToCursos = () => {
   cursor: pointer;
 }
 </style>
+>

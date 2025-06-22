@@ -11,7 +11,8 @@
       "about": "Sobre",
       "contact": "Contato",
       "contacts": "Contato",
-      "courses": "Cursos"
+      "courses": "Cursos",
+      "curso": "Curso"
     },
     "courses": {
       "title": "Cursos da UTFPR",
@@ -46,7 +47,8 @@
       "about": "About",
       "contact": "Contact",
       "contacts": "Contact",
-      "courses": "Courses"
+      "courses": "Courses",
+      "curso": "Course"
     },
     "courses": {
       "title": "UTFPR Courses",
@@ -81,7 +83,8 @@
       "about": "Acerca",
       "contact": "Contacto",
       "contacts": "Contacto",
-      "courses": "Cursos"
+      "courses": "Cursos",
+      "curso": "Curso"
     },
     "courses": {
       "title": "Cursos de la UTFPR",
@@ -104,3 +107,4 @@
     }
   }
 }
+
