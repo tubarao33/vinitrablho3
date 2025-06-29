@@ -1,55 +1,46 @@
-# v0-bt5-vue
-Projeto inicial para outros projetos com [__vue3__](https://vuejs.org/) e [__bootstrap5__](https://getbootstrap.com/)
+## 🛠 Funcionalidades e Melhorias Implementadas
 
-O esperado de um projeto incial:
-- [x] Mudar de tema (claro / escuro)
-- [x] Fazer o auto do tema ???
-- [x] Multi línguas ([vue-i18n](https://vue-i18n.intlify.dev/))
-- [ ] Pensar no site com a pasta layouts?!?
-- [ ] Busca interna ??? [algolia](https://www.algolia.com/developers) [typesense](https://typesense.org/)
-- [ ] Blog / Notícias ???
-- [ ] Mais frameworks CSS??? (beer, taywind)(templates)
-- [ ] Mais modelos de rodapé e menu principal
-- [ ] Colocar os ícones do bootstrap5
-- [ ] Colocar mais palavras na tradução (i18n.json)
+### 🌍 Internacionalização (i18n)
+- Suporte a múltiplos idiomas: Português, Inglês e Espanhol.
+- Utilização do arquivo `i18n.json` com as traduções.
+- Botão de seleção de idioma no componente `NavBar.vue`, com persistência da escolha via `localStorage`.
 
+### 😄 Emojis e Ícones
+- Emojis foram inseridos para tornar a interface mais acessível, divertida e visual.
+- Utilizados em diversos componentes e views, como: `HomeView.vue`, `CoursesView.vue`, `NavBar.vue`, `FooterBar.vue`, entre outros.
 
-## Referências:
-- [howbizarre](https://github.com/howbizarre/starter-template-vue-3-bootstrap-5-sass-dark-theme-typescript)
-- [danielschmitz - kitchenStock](https://github.com/danielschmitz/kitchenStock-vue3)
-- [danielschmitz - vue3-book](https://github.com/danielschmitz/kitchen-app-vue3-book)
-- [danielschmitz - livro vue3 grátis](https://leanpub.com/book-vue-br)
+### 🎞️ Animações com Animate.css
+- Animações aplicadas em componentes como:
+  - `App.vue`, `NavBar.vue`, `FooterBar.vue`, `CoursesView.vue`, `AboutView.vue`
+- Efeitos de fade e transições suaves para uma melhor experiência do usuário.
 
-## Preparando o ambiente de desenvolvimento (vscode):
-Instalar o [vscode](https://code.visualstudio.com/Download) com os plugins:
-- [Vue - official - Prioridade!!!](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
-- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-- [Console Ninja](https://marketplace.visualstudio.com/items?itemName=WallabyJs.console-ninja)
-- [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
+### 💅 Estilização com Bootstrap 5
+- Utilização de classes utilitárias do **Bootstrap 5** para:
+  - Grid responsivo (`row`, `col-md`, `g-4`, etc.)
+  - Componentes visuais (`card`, `btn`, `form-control`, etc.)
+  - Tipografia (`text-center`, `fw-bold`, `text-muted`, etc.)
+  - Espaçamentos (`py-5`, `mb-4`, `mt-3`, etc.)
+- Layout responsivo adaptado para diferentes tamanhos de tela.
 
+### 🧩 Componentização
+- Componentes reutilizáveis criados e utilizados no projeto:
+  - `NavBar.vue`: barra de navegação com idiomas e modo escuro.
+  - `FooterBar.vue`: rodapé com informações e redes sociais.
+  - `AppCarousel.vue`: carrossel de destaques com imagens e texto.
 
+### 🖼️ Imagens Ilustrativas
+- Imagens reais da UTFPR e genéricas foram adicionadas:
+  - `ContactsView.vue`: imagem da entrada do campus.
+  - `AboutView.vue`: imagem explicativa do projeto.
+  - `AppCarousel.vue`: imagens de destaque no carrossel.
 
-## Como começar
+### 🧱 Novas Views e Estrutura de Páginas
+- `HomeView.vue`: página inicial com boas-vindas e descrição.
+- `CoursesView.vue`: listagem com filtro de cursos disponíveis.
+- `CursoView.vue`: exibe detalhes completos de um curso selecionado.
+- `AboutView.vue`: explica o objetivo e as tecnologias do projeto.
+- `ContactsView.vue`: mostra dados de contato, endereço e mapa da instituição.
 
-Crie um novo repositório a partir do modelo e use seu gerenciador de pacotes favorito para instalá-lo. Utilizando NPM os comandos são:
+---
 
-### Install
-
-```bash
-npm install
-```
-
-### Ambiente de Desenvolvimento
-
-```bash
-npm run dev
-```
-
-### Build
-
-Certifique-se de que todas as configurações revisadas sobre o script de construção estejam no arquivo package.json e nos arquivos .env.[mode].
-
-```bash
-npm run build
-```
+✅ Projeto desenvolvido com **Vue 3**, **Vite**, **Bootstrap 5**, **Vue Router** e **i18n**, dentro dos padrões da disciplina **Web Front-End II – UTFPR**.
