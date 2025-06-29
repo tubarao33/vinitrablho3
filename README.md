@@ -44,3 +44,8 @@
 ---
 
 ✅ Projeto desenvolvido com **Vue 3**, **Vite**, **Bootstrap 5**, **Vue Router** e **i18n**, dentro dos padrões da disciplina **Web Front-End II – UTFPR**.
+
+---
+
+### ✨ Bem feito.
+**Feito para dar certo. Autor: Vinícius Guerra**
